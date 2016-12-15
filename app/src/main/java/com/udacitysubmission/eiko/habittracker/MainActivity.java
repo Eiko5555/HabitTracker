@@ -42,19 +42,20 @@ public class MainActivity extends AppCompatActivity {
         displayDatabaseInfo();
     }
 
-    @Override
+ @Override
     protected void onStart() {
         super.onStart();
         displayDatabaseInfo();
     }
 
     private void displayDatabaseInfo(){
-        SQLiteDatabase db = mDhHelper.getReadableDatabase();
-        String[] projection = {InfoContract.InfoEntry.COLUMN_NAME,
-                InfoContract.InfoEntry.COLUMN_PHONE,
-                InfoContract.InfoEntry._ID};
-        Cursor cursor = db.query(InfoContract.InfoEntry.TABLE_NAME,
-                projection, null, null, null, null, null);
+//        SQLiteDatabase db = mDhHelper.getReadableDatabase();
+//        String[] projection = {InfoContract.InfoEntry.COLUMN_NAME,
+//                InfoContract.InfoEntry.COLUMN_PHONE,
+//                InfoContract.InfoEntry._ID};
+//        Cursor cursor = db.query(InfoContract.InfoEntry.TABLE_NAME,
+//                projection, null, null, null, null, null);
+        Cursor cursor = mDhHelper.readAllHabits();
         TextView displayview = (TextView)findViewById(R.id.textview);
         try{
             displayview.setText("Number of contact info saved:  "+
@@ -97,7 +98,6 @@ public class MainActivity extends AppCompatActivity {
         if (id == R.id.action_settings) {
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 }

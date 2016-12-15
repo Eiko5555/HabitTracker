@@ -1,8 +1,12 @@
 package com.udacitysubmission.eiko.habittracker.data;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.widget.TextView;
+
+import com.udacitysubmission.eiko.habittracker.R;
 import com.udacitysubmission.eiko.habittracker.data.InfoContract.InfoEntry;
 
 /**
@@ -31,6 +35,16 @@ public class SqliteDB extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+    }
+    public Cursor readAllHabits() {
+        //Your code
+        SQLiteDatabase db = this.getReadableDatabase();
+        String[] projection = {InfoContract.InfoEntry.COLUMN_NAME,
+                InfoContract.InfoEntry.COLUMN_PHONE,
+                InfoContract.InfoEntry._ID};
+        Cursor cursor = db.query(InfoContract.InfoEntry.TABLE_NAME,
+                projection, null, null, null, null, null);
 
+        return cursor;
     }
 }
